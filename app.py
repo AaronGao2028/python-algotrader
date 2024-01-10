@@ -1,3 +1,10 @@
+# Imports from library
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import yfinance as yf
+import matplotlib.pyplot as plt
+from prettytable import PrettyTable
+
 # Variables
 long_MA_duration = 200
 short_MA_duration = 20
