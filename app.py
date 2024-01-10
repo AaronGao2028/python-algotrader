@@ -56,7 +56,8 @@ for i in range (len (df)):
 
     if (day > long_MA_duration): 
         long_MA_arr.append(long_MA)
-        long_MA_dates.append(date)         
+        long_MA_dates.append(date)    
+             
         # If the 20 day moving average crosses below the 200 day moving average,
         # the stocks will be sold
         if (short_MA < long_MA and previous == "above"):
@@ -67,6 +68,7 @@ for i in range (len (df)):
             num_stock = 0                
             table.add_row([date, round(num_stock, 2), round(wealth, 2), "Sell"])
             previous = "below"
+            
         # If the 20 day moving average crosses above the 200 day moving average,
         # the stocks will be bought
         if (short_MA > long_MA and previous == "below"):
@@ -83,10 +85,14 @@ if (wealth == 0):
     wealth = num_stock * df.loc[len(df)-1, "Close"]
     table.add_row(df.loc[i, "Date"], round(num_stock, 2), round(wealth, 2), "Sell")
 
+# Print Final Information
 profit = wealth - 1000
 
-# Print Table
 print (table)
+print ("TOTAL")
+print ("FROM", start_date, end_date)
+print ("WEALTH =", round(wealth, 2))
+print ("PROFIT =", round(profit, 2))
 
 # Plot Information Onto Graph
 plt.title("Chart of Price + Moving Averages")
@@ -106,9 +112,3 @@ plt.legend(["Price", "200 Day MA", "20 Day MA"], loc ="lower right")
 plt.plot()
 
 plt.show()
-
-# Print Final Information
-print ("TOTAL")
-print ("FROM", start_date, end_date)
-print ("WEALTH =", round(wealth, 2))
-print ("PROFIT =", round(profit, 2))
